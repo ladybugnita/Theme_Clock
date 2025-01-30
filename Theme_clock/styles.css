@@ -1,0 +1,55 @@
+#stopwatch {
+    font-size: 50px;
+    margin:25px;
+}
+button {
+    font-size:30px;
+    margin: 8px;
+}
+body{
+    background: grey;
+
+}
+#clock-container{
+    background-color:rgb(124, 115, 144);
+    width: 50%;
+    min-width: 500px;
+    position:absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    padding: 20px 0;
+    padding-bottom: 50px;
+    border-radius: 10px;
+}
+.buttons{
+   width:50%;
+   margin: 60px auto 0 auto;
+   display: flex;
+   justify-content: space-around;
+}
+.buttons button{
+   width: 120px;
+   height: 45px;
+   background-color:azure;
+   color:black;
+   border: none;
+   font-family: 'poppins', sans-serif; 
+   font-size:18px;
+   border-radius: 5px;
+   cursor: pointer;
+   outline:none; 
+}
+
+.buttons button:nth-last-child(2) {
+    background-color:red;
+}
+.buttons button:nth-last-child(1){
+    background-color:yellow;
+}
+.buttons button:nth-last-child(0){
+    background-color:green;
+}
+.buttons button:hover{
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+}
