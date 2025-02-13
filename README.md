@@ -1,0 +1,1 @@
+This project was developed as part of my 5th semester Web Technology course. The Themed clock is a web-based project that provides a stylish and customizable clock with additional time management features, such as a stopwatch and a timer with validation.The project is designed using HTML, CSS, and JavaScript, ensuring an interactive and visually appealing user experience.  
