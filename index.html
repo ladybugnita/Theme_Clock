@@ -10,14 +10,24 @@
     <div class="main-container">
         <h1>Themed Clock</h1>
         <div id="displayTimer" class="timer-box">
-            00:00:00
+        Timer
         </div>
     </div>
+    
+    <h1>Select your clock Theme</h1>
+
+    <button class ="theme-button nature"  onclick="redirectTo('nature.html')">Nature Theme</button>
+    <button class="theme-button minimalistic" onclick="redirectTo('minimalistic.html')">Minimalistic Theme</button>
+    <button class ="theme-button digital" onclick="redirectTo('digital.html')">Digital Theme</button>
 
     <script>
         document.getElementById("displayTimer").addEventListener("click", function () {
             window.location.href = "timer.html";
         });
+
+        function redirectTo(page) {
+            window.location.href =page;
+        }
     </script>
 </body>
 </html>
