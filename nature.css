@@ -1,0 +1,103 @@
+body {
+    background: url('Nature_img.png') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    margin: 0;
+  }
+
+  .clock {
+    width: 200px;
+    height: 200px;
+    border: 10px solid #333;
+    border-radius: 50%;
+    position: relative;
+    background-color: #fff;
+    }
+
+    .hand {
+      position: absolute;
+      background-color: #333;
+      transform-origin: 50% 100%;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .hour-hand {
+      width: 6px;
+      height: 50px;
+      top: 50px;
+      left: 97px;
+    }
+    .minute-hand {
+        width: 4px;
+        height: 70px;
+        top: 30px;
+        left: 98px;
+      }
+  
+      .second-hand {
+        width: 2px;
+        height: 80px;
+        top: 20px;
+        left: 99px;
+        background-color: red;
+      }
+  
+      .number {
+        position: absolute;
+        font-size: 16px;
+        font-weight: bold;
+        color: #333;
+        transform: translate(-50%, -50%);
+      }
+       /* Positioning numbers around the clock */
+       .number-12 { 
+        top: 10px;
+         left: 50%;
+         }
+       .number-1 { 
+        top: 20px; 
+        left: 75%; 
+         }
+       .number-2 { 
+        top: 45px;
+         left: 90%; 
+        }
+       .number-3 { 
+        top: 50%; 
+        left: 95%;
+        }
+       .number-4 { 
+        top: 75%; 
+        left: 90%;
+        }
+       .number-5 { 
+        top: 90%;
+         left: 75%; 
+        }
+       .number-6 { 
+        top: 95%; 
+        left: 50%;
+        }
+       .number-7 {
+         top: 90%; 
+         left: 25%; 
+        }
+       .number-8 { 
+        top: 75%; 
+        left: 10%; 
+        }
+       .number-9 { 
+        top: 50%; 
+        left: 5%; 
+        }
+       .number-10 {
+         top: 25%; 
+         left: 10%;
+         }
+       .number-11 {
+         top: 10%; 
+         left: 25%; 
+        }
