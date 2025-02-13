@@ -1,39 +1,91 @@
-let stopwatchInterval;
-let startTime;
-let elapsedTime = 0;
+let timerInterval;
+let totalSeconds = 0;
+let isRunning = false;
 
-function startStopwatch() {
-    if (stopwatchInterval) return; //prevent multiple intervals
-    startTime = Date.now() - elapsedTime; // adjust start time
-    stopwatchInterval = setInterval(() => {
-        elapsedTime = Date.now() - startTime;
-        document.getElementById('stopwatch').innerText = formatTime(elapsedTime);
-    }, 1000);
-}
+document.addEventListener("DOMContentLoaded", function () {
+    const timeInput = document.getElementById("timeInput");
+    const startButton = document.getElementById("startTimer");
+    const stopButton = document.getElementById("stopTimer");
+    const resetButton = document.getElementById("resetTimer");
+    const setButton = document.getElementById("setTimer");
 
-function stopStopwatch() {
-    if (stopwatchInterval) {
-    clearInterval(stopwatchInterval);
-    stopwatchInterval = null;
-   }
-}
+    setButton.addEventListener("click", function () {
+        let inputTime = timeInput.value.trim();
+        console.log("Raw Input Time:", inputTime); // Debugging input value
 
-function resetStopwatch() {
-    clearInterval(stopwatchInterval);
-    stopwatchInterval = null;
-    startTime = null;
-    elapsedTime = 0;
-    document.getElementById('stopwatch').innerText ='00:00:00';
-}
+        if (!isValidTimeFormat(inputTime)) {
+            alert("Please enter time in HH:MM:SS format.");
+            return;
+        }
 
-function formatTime(milliseconds) {
-    const totalSeconds = Math.floor(milliseconds / 1000);
-    const hours = Math.floor(totalSeconds / 3600);
-    const minutes = Math.floor((totalSeconds % 3600) / 60);
-    const seconds = totalSeconds % 60;
-    return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
-}
+        let timeParts = inputTime.split(":").map(Number);
+        if (timeParts.length === 3) {
+            let [hours, minutes, seconds] = timeParts;
+            totalSeconds = hours * 3600 + minutes * 60 + seconds;
+        } else {
+            console.error("Invalid time format");
+            return;
+        }
 
-function pad(number) {
-    return number.toString().padStart(2, '0');
-}
+        if (totalSeconds <= 0) {
+            alert("Set a valid time greater than 00:00:00.");
+            return;
+        }
+
+        console.log("Computed totalSeconds:", totalSeconds);
+        updateDisplay();
+    });
+
+    startButton.addEventListener("click", function () {
+        console.log("Start Button clicked. Current totalSeconds(global):", totalSeconds);
+        
+        if (isRunning) return; // Prevent multiple timers
+        if (totalSeconds <= 0) {
+            console.error("Start Failed - totalSeconds is 0!");
+            alert("Please set a valid time first.");
+            return;
+        }
+
+        isRunning = true;
+        timerInterval = setInterval(() => {
+            if (totalSeconds <= 0) {
+                clearInterval(timerInterval);
+                isRunning = false;
+                alert("Time is up!");
+                return;
+            }
+
+            totalSeconds--;
+            updateDisplay();
+        }, 1000);
+    });
+
+    stopButton.addEventListener("click", function () {
+        clearInterval(timerInterval);
+        isRunning = false;
+    });
+
+    resetButton.addEventListener("click", function () {
+        clearInterval(timerInterval);
+        isRunning = false;
+        totalSeconds = 0;
+        updateDisplay();
+    });
+
+    function isValidTimeFormat(time) {
+        const regex = /^\d{1,2}:\d{2}:\d{2}$/; 
+        return regex.test(time);
+    }
+
+    function updateDisplay() {
+        const hours = Math.floor(totalSeconds / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+        const displayTime = `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+        timeInput.value = displayTime;
+    }
+
+    function pad(number) {
+        return number.toString().padStart(2, "0");
+    }
+});

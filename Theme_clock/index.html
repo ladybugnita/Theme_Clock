@@ -1,4 +1,4 @@
-<!Doctype html>
+<!DOCTYPE html>
 <html lang ="en">
     <head>
         <meta charset="UTF-8">
@@ -7,14 +7,15 @@
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
+        <h1>Timer</h1>
         <div id="clock-container">
-            <div id="clock"></div>
-            <div id ="stopwatch">00:00:00</div>
-            <button onclick ="startStopwatch()">Start</button>
-            <button onclick ="stopStopwatch()">Stop</button>
-            <button onclick ="resetStopwatch()">Reset</button>
-
-            
+            <input type="text" id="timeInput" placeholder="00:00:00" maxlength="8">
+            <div class="buttons">
+               <button id = "startTimer">Start</button>
+               <button id ="stopTimer">Stop</button>
+               <button id ="resetTimer">Reset</button> 
+               <button id="setTimer">Set Timer</button>
+            </div> 
         </div>
         <script src ="script.js"></script>
     </body>
